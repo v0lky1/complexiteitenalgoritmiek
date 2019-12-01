@@ -11,7 +11,7 @@ public class RecMinMax implements MinMaxer {
     }
 
     public List<Integer> getResult(List<Integer> toBeHandled) {
-        ArrayList<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
 
         //setting defaults
         int min = Integer.MAX_VALUE;
@@ -30,22 +30,62 @@ public class RecMinMax implements MinMaxer {
         List<Integer> firstHalf = toBeHandled.subList(0, toBeHandled.size() / 2);
         List<Integer> secondHalf = toBeHandled.subList(toBeHandled.size() / 2, toBeHandled.size());
 
+        int minFirstHalf = findMin(firstHalf);
+        int minSecondHalf = findMin(secondHalf);
+        int maxFirstHalf = findMax(firstHalf);
+        int maxSecondHalf = findMax(secondHalf);
+
+        if (minFirstHalf >= minSecondHalf) {
+            result.add(minFirstHalf);
+        } else {
+            result.add(minSecondHalf);
+        }
+
+        if (maxFirstHalf >= maxSecondHalf) {
+            result.add(maxFirstHalf);
+        } else {
+            result.add(maxSecondHalf);
+        }
+
         return result;
     }
 
-    public List<Integer> getMax(List<Integer> numbers) {
+    public int findMax(List<Integer> list) {
+        List<Integer> keep = new ArrayList<>();
 
-        if (numbers.size() == 1) {
-            return numbers;
-
-        } else if (numbers.get(0) > numbers.get(1)) {
-            numbers.remove(numbers.get(1));
-
-        } else {
-            numbers.remove(numbers.get(0));
+        int first = list.get(0);
+        for (int number : list) {
+            if (number > first) {
+                keep.add(number);
+            }
         }
 
-        return getMax(numbers);
+        if (keep.size() == 0)
+            return first;
+
+        if (keep.size() == 1)
+            return keep.get(0);
+
+        return findMax(keep);
+    }
+
+    public int findMin(List<Integer> list) {
+        List<Integer> keep = new ArrayList<>();
+
+        int first = list.get(0);
+        for (int number : list) {
+            if (number < first) {
+                keep.add(number);
+            }
+        }
+
+        if (keep.size() == 0)
+            return first;
+
+        if (keep.size() == 1)
+            return keep.get(0);
+
+        return findMin(keep);
     }
 
     @Override

@@ -4,16 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeqMinMax implements MinMaxer {
-
     public SeqMinMax() {
-
     }
 
     public List<Integer> getResult(List<Integer> toBeHandled) {
-
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
-        ArrayList<Integer> minmax = new ArrayList<>();
+
+        ArrayList<Integer> minMax = new ArrayList<>();
 
         for (int i = 0; i < toBeHandled.size(); i++) {
             if (toBeHandled.get(i) < min) {
@@ -24,10 +22,10 @@ public class SeqMinMax implements MinMaxer {
             }
         }
 
-        minmax.add(min);
-        minmax.add(max);
+        minMax.add(min);
+        minMax.add(max);
 
-        return minmax;
+        return minMax;
     }
 
     @Override

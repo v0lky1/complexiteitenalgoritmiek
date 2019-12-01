@@ -14,7 +14,6 @@ public class SortedMinMax implements MinMaxer {
 
             for (int j = 1; j < list.size(); j++) {
 
-
                 if (list.get(j - 1) > list.get(j)) {
                     Integer temp = list.get(j - 1);
 

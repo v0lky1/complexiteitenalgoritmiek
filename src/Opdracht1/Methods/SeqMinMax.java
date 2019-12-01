@@ -1,29 +1,37 @@
 package Opdracht1.Methods;
 
-public class SeqMinMax {
+import java.util.ArrayList;
+import java.util.List;
 
-    public SeqMinMax(){
+public class SeqMinMax implements MinMaxer {
+
+    public SeqMinMax() {
 
     }
 
-    public int[] getResult(int[] toBeHandled) {
+    public List<Integer> getResult(List<Integer> toBeHandled) {
 
-        int[] numbers = new int[2];
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        ArrayList<Integer> minmax = new ArrayList<>();
 
-        numbers[0] = Integer.MAX_VALUE;
-        numbers[1] = Integer.MIN_VALUE;
-
-        for (int i = 0; i < toBeHandled.length; i++) {
-            if (toBeHandled[i] < numbers[0]) {
-                numbers[0] = toBeHandled[i];
+        for (int i = 0; i < toBeHandled.size(); i++) {
+            if (toBeHandled.get(i) < min) {
+                min = toBeHandled.get(i);
             }
-            if (toBeHandled[i] > numbers[1]) {
-                numbers[1] = toBeHandled[i];
-
+            if (toBeHandled.get(i) > max) {
+                max = toBeHandled.get(i);
             }
         }
 
-        System.out.println("Min: " + numbers[0] + "\nMax: " + numbers[1]);
-        return numbers;
+        minmax.add(min);
+        minmax.add(max);
+
+        return minmax;
+    }
+
+    @Override
+    public String toString() {
+        return "SeqMinMax";
     }
 }

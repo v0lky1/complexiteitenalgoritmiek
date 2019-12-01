@@ -1,29 +1,37 @@
 package Opdracht1.Methods;
 
-public class SortedMinMax {
-    public  SortedMinMax(){
+import java.util.ArrayList;
+import java.util.List;
 
+public class SortedMinMax implements MinMaxer {
+    public SortedMinMax() {
     }
 
+    public List<Integer> getResult(List<Integer> list) {
 
-    public int[] getResult(int[] toBeHandled) {
-        Integer temp;
+        List<Integer> returnList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
 
-        for (int i = 0; i < toBeHandled.length; i++) {
-
-            for (int j = 1; j < toBeHandled.length; j++) {
+            for (int j = 1; j < list.size(); j++) {
 
 
-                if (toBeHandled[j - 1] > toBeHandled[j]) {
-                    temp = toBeHandled[j - 1];
+                if (list.get(j - 1) > list.get(j)) {
+                    Integer temp = list.get(j - 1);
 
-                    toBeHandled[j - 1] = toBeHandled[j];
-                    toBeHandled[j] = temp;
+                    list.set(j - 1, list.get(j));
+                    list.set(j, temp);
                 }
             }
         }
 
-        System.out.println("Min: " + toBeHandled[0] + "\nMax: " + toBeHandled[toBeHandled.length - 1]);
-        return toBeHandled;
+        returnList.add(list.get(0));
+        returnList.add(list.get(list.size() - 1));
+
+        return returnList;
+    }
+
+    @Override
+    public String toString() {
+        return "SortedMinMax";
     }
 }

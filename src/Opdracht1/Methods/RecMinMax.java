@@ -1,55 +1,55 @@
 package Opdracht1.Methods;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
-public class RecMinMax {
+import java.util.List;
 
-    public RecMinMax(){
+public class RecMinMax implements MinMaxer {
+
+    public RecMinMax() {
 
     }
 
-    public int[] getResult(int[] toBeHandled) {
+    public List<Integer> getResult(List<Integer> toBeHandled) {
+        ArrayList<Integer> result = new ArrayList<>();
 
-        int[] numbers = new int[2];
+        //setting defaults
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
 
-        if (toBeHandled.length == 1){
-            numbers[0] = toBeHandled[0];
-            numbers[1] = toBeHandled[0];
-        } else if (toBeHandled.length == 2) {
-            numbers[0] = toBeHandled[0];
-            numbers[1] = toBeHandled[1];
+        if (toBeHandled.size() <= 2) {
+            if (toBeHandled.size() == 1) {
+                min = toBeHandled.get(0);
+                max = toBeHandled.get(0);
+            } else {
+                min = Math.min(toBeHandled.get(0), toBeHandled.get(1));
+                max = Math.max(toBeHandled.get(0), toBeHandled.get(1));
+            }
+        }
+        //We hebben meer dan 2 getallen
+        List<Integer> firstHalf = toBeHandled.subList(0, toBeHandled.size() / 2);
+        List<Integer> secondHalf = toBeHandled.subList(toBeHandled.size() / 2, toBeHandled.size());
+
+        return result;
+    }
+
+    public List<Integer> getMax(List<Integer> numbers) {
+
+        if (numbers.size() == 1) {
+            return numbers;
+
+        } else if (numbers.get(0) > numbers.get(1)) {
+            numbers.remove(numbers.get(1));
+
         } else {
-            int firstHalf[] = Arrays.copyOfRange(toBeHandled, 0, toBeHandled.length/2);
-            int secondHalf[] = Arrays.copyOfRange(toBeHandled, (toBeHandled.length/2), toBeHandled.length);
-
-            if (findMin(firstHalf, 0) < findMin(secondHalf, 0)) {
-                numbers[0] = findMin(firstHalf, 0);
-            } else {
-                numbers[0] = findMin(secondHalf, 0);
-            }
-
-            if (findMax(firstHalf, 0) > findMax(secondHalf, 0)) {
-                numbers[1] = findMax(firstHalf, 0);
-            } else {
-                numbers[1] = findMax(secondHalf, 0);
-            }
+            numbers.remove(numbers.get(0));
         }
-        System.out.println("Min: " + numbers[0] + "\nMax: " + numbers[1]);
-        return numbers;
+
+        return getMax(numbers);
     }
 
-    public int findMin(int half[], int start){
-        if (start == half.length) {
-            return half[0];
-        }
-        return Math.min(half[start],findMin(half, start+1));
+    @Override
+    public String toString() {
+        return "RecMinMax";
     }
-
-    public int findMax(int half[], int start) {
-        if (start == half.length) {
-            return half[0];
-        }
-        return Math.max(half[start],findMax(half, start+1));
-    }
-
 }

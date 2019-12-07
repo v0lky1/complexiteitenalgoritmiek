@@ -72,7 +72,6 @@ public class Main {
                         configs[0] = number;
                         randomList = createList(configs[0]);
                         System.out.println(output(minMaxer, configs, randomList));
-                        System.out.println("Array length = " + configs[0]);
                     }
                 }
 

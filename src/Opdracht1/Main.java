@@ -5,10 +5,8 @@ import Opdracht1.Methods.RecMinMax;
 import Opdracht1.Methods.SeqMinMax;
 import Opdracht1.Methods.SortedMinMax;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
@@ -45,9 +43,9 @@ public class Main {
             SortedMinMax sortedMinMax = new SortedMinMax();
             SeqMinMax seqMinMax = new SeqMinMax();
             RecMinMax recMinMax = new RecMinMax();
-            minMaxerList.add(sortedMinMax);
-            minMaxerList.add(seqMinMax);
             minMaxerList.add(recMinMax);
+            minMaxerList.add(seqMinMax);
+            minMaxerList.add(sortedMinMax);
 
             if (configs[2] == 1) {
                 //Sorted Min Max
@@ -67,9 +65,10 @@ public class Main {
                 configs[1] = 10;
                 int[] numbers = {5_000, 10_000, 50_000, 100_000, 500_000, 1_000_000, 5_000_000, 10_000_000, 50_000_000, 100_000_000};
                 for (MinMaxer minMaxer : minMaxerList) {
-                    System.out.println("Current minmaxer = " + minMaxer);
+                    System.out.println("\n\n*******" + minMaxer.toString().toUpperCase() + "*******\n\n");
 
                     for (int number : numbers) {
+                        System.out.println("******* ELEMENTS: " + number + " *******\n");
                         configs[0] = number;
                         randomList = createList(configs[0]);
                         System.out.println(output(minMaxer, configs, randomList));

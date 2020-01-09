@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class Main {
     Scanner scanner = new Scanner(System.in);
-    PrintWriter writer = new PrintWriter("measurements.txt", StandardCharsets.UTF_8);
+    PrintWriter writer = new PrintWriter("measurements.txt", String.valueOf(StandardCharsets.UTF_8));
 
 
     public Main() throws IOException {

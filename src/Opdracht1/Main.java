@@ -69,6 +69,7 @@ public class Main {
 
                     for (int number : numbers) {
                         System.out.println("******* ELEMENTS: " + number + " *******\n");
+                        writer.println("******* ELEMENTS: " + number + " *******\n");
                         configs[0] = number;
                         randomList = createList(configs[0]);
                         System.out.println(output(minMaxer, configs, randomList));

@@ -2,6 +2,7 @@ package Opdracht2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class DoubleEndedPriorityQueue {
 
@@ -9,20 +10,21 @@ public class DoubleEndedPriorityQueue {
     private int elementsAmount;
 
     public DoubleEndedPriorityQueue() {
+
     }
 
-    public void add(int element) {
+    public void add(int integerToBeAdded) {
         // If the last node already has two elements create a new node.
         if (size() % 2 == 0) {
-            list.add(new Node(element, -1));
-            // else, add this element to the last node
+            list.add(new Node(integerToBeAdded, -1));
+            // else, add this integerToBeAdded to the last node
         } else {
-            Node lastNode = list.get(list.size() -1);
-            if (lastNode.getMin() < element) {
-                lastNode.setMax(element);
+            Node lastNode = list.get(list.size() - 1);
+            if (lastNode.getMin() < integerToBeAdded) {
+                lastNode.setMax(integerToBeAdded);
             } else {
                 lastNode.setMax(lastNode.getMin());
-                lastNode.setMin(element);
+                lastNode.setMin(integerToBeAdded);
             }
         }
         elementsAmount++;
@@ -32,16 +34,16 @@ public class DoubleEndedPriorityQueue {
             return;
         }
 
-        Node daddyNode = list.get((list.size() -1) / 2);
-        if (daddyNode.getMin() > element) {
+        Node parentNode = list.get((list.size() - 1) / 2);
+        if (parentNode.getMin() > integerToBeAdded) {
             minHeapInsert();
-        } else if (daddyNode.getMax() < element) {
+        } else if (parentNode.getMax() < integerToBeAdded) {
             maxHeapInsert();
         }
     }
 
     public void minHeapInsert() {
-        int index = list.size() -1;
+        int index = list.size() - 1;
         Node node = list.get(index);
 
         while (index > 0) {
@@ -64,7 +66,7 @@ public class DoubleEndedPriorityQueue {
     }
 
     private void maxHeapInsert() {
-        int index = list.size() -1;
+        int index = list.size() - 1;
         Node node = list.get(index);
 
         while (index > 0) {
@@ -159,6 +161,102 @@ public class DoubleEndedPriorityQueue {
         return min;
     }
 
+    public int removeMax() {
+        int max = getHigh();
+
+        if (size() == 1) {
+            list.remove(0);
+            elementsAmount--;
+            return max;
+        }
+
+        Node lastNode = list.get(list.size() - 1);
+
+        /*Getting the attribute from the last node
+        and giving it to the first node
+        after this we should bubble it down to the correct spot in the tree.*/
+
+        if (size() % 2 == 1) {
+            list.get(0).setMax(lastNode.getMin());
+            list.remove(list.size() - 1);
+        } else {
+            list.get(0).setMax(lastNode.getMax());
+            lastNode.setMax(-1);
+        }
+        elementsAmount--;
+
+
+        int index = 0;
+        Node currentNode = list.get(index);
+
+        while (true) {
+            //if true node has no child and we're done bubbling
+            if (index * 2 >= list.size()) {
+                break;
+            }
+
+            int childIndex;
+
+            //If true, currentNode has two children
+            if (index * 2 + 1 < list.size()) {
+                //if true second child has no max attribute and is last node
+                //if false child has max attribute.
+                if (size() % 2 == 1 && index * 2 + 1 == list.size() - 1) {
+                    //if true, max of child 1 is smaller than the min of second child.
+
+                    if (list.get(index * 2).getMax() < list.get(index * 2 + 1).getMin()) {
+                        childIndex = index * 2 + 1;
+                    } else {
+                        childIndex = index * 2;
+                    }
+
+                } else if (list.get(index * 2).getMax() < list.get(index * 2 + 1).getMax()) {
+                    childIndex = index * 2 + 1;
+                } else {
+                    childIndex = index * 2;
+                }
+            } else {
+                childIndex = index * 2;
+            }
+
+            //We start bubbling <;-)
+
+            Node highestChildNode = list.get(childIndex);
+            //if true highestchild has no max
+            if (highestChildNode.getMax() == -1) {
+
+                 /* if true, the max of currentNode is less than the min of it's highest child attribute
+                 so switch them with each other to establish a good interval heap.
+                 if the child doesn't exceed the max of our currentNode the bubbling has been completed.*/
+
+                if (currentNode.getMax() < highestChildNode.getMin()) {
+                    int temp = currentNode.getMax();
+                    currentNode.setMax(highestChildNode.getMin());
+                    highestChildNode.setMin(temp);
+
+                } else {
+                    break;
+                }
+                 /* if true, the max of currentNode is less than the max of it's highest child attribute
+                 if the child doesn't exceed the max of our currentNode the bubbling has been completed.*/
+            } else if (currentNode.getMax() < highestChildNode.getMax()) {
+                int temp = currentNode.getMax();
+                currentNode.setMax(highestChildNode.getMax());
+                highestChildNode.setMax(temp);
+                if (highestChildNode.getMin() > highestChildNode.getMax()) {
+                    int temp1 = highestChildNode.getMax();
+                    highestChildNode.setMax(highestChildNode.getMin());
+                    highestChildNode.setMin(temp1);
+                }
+            } else {
+                break;
+            }
+            index = childIndex;
+            currentNode = highestChildNode;
+        }
+        return max;
+    }
+
     public int size() {
         return elementsAmount;
     }
@@ -168,19 +266,20 @@ public class DoubleEndedPriorityQueue {
     }
 
     public int getLow() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("List is empty");
+        }
         return list.get(0).getMin();
     }
 
     public int getHigh() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("List is empty**");
+        }
         if (size() == 1) {
             return list.get(0).getMin();
         } else {
             return list.get(0).getMax();
         }
     }
-
-
-
-
-
 }

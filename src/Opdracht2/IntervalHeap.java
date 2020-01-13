@@ -38,7 +38,7 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
         }
     }
 
-    public void minHeapInsert() {
+    private void minHeapInsert() {
         int index = list.size() - 1;
         Node node = list.get(index);
 
@@ -61,7 +61,7 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
         }
     }
 
-    public void maxHeapInsert() {
+    private void maxHeapInsert() {
         int index = list.size() - 1;
         Node node = list.get(index);
 

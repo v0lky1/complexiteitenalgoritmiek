@@ -7,7 +7,7 @@ public class Main {
     }
 
     private void run() {
-        DoubleEndedPriorityQueue queue = new DoubleEndedPriorityQueue();
+        IntervalHeap queue = new IntervalHeap();
 
         System.out.println("Size: " + queue.size());
         queue.add(5);
@@ -38,7 +38,7 @@ public class Main {
         System.out.println("Size: " + queue.size());
         System.out.println("High: " + queue.removeMax());
         System.out.println("Size: " + queue.size());
-        System.out.println("REMOVING MAX: " + queue.removeMax());
+        System.out.println("Removing max: " + queue.removeMax());
         System.out.println("Size: " + queue.size());
         System.out.println("List empty: " + queue.isEmpty());
     }

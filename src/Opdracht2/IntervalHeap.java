@@ -69,7 +69,10 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
             int parent = index / 2;
             Node parentNode = list.get(parent);
 
+            // If maximum value is null we compare minimum value instead
             if (node.getMax() == -1) {
+                // Minimum value lower than it's parent's maximum value
+                // Everything is in it's right place
                 if (node.getMin() < parentNode.getMax()) {
                     break;
                 }
@@ -80,6 +83,8 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
                 index = parent;
                 node = parentNode;
             } else {
+                // Maximum value lower than it's parent's maximum value
+                // Everything is in it's right place
                 if (node.getMax() < parentNode.getMax()) {
                     break;
                 }
@@ -96,15 +101,19 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
     public int removeLow()  {
         int min = getLow();
 
+        // Only one value left means we remove this node and return it.
         if (size() == 1) {
             list.remove(0);
             elementsAmount--;
             return min;
         }
 
+        // Get minimum value from last node and put it at the top
         Node lastNode = list.get(list.size() - 1);
         list.get(0).setMin(lastNode.getMin());
 
+        // If the amount of values uneven we can remove the last node
+        // Otherwise just place the maximum in the minimum
         if (size() % 2 == 1) {
             list.remove(list.size() - 1);
         } else {
@@ -117,14 +126,18 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
         int index = 0;
         Node node = list.get(index);
 
+        // Bubble the newly placed value in the root node down
         while (true) {
 
+            // If there are no children we're done
             if (index * 2 >= list.size() || list.size() == 1) {
                 break;
             }
 
             int childIndex;
 
+            // Check if this node has two children and compare their minimum values
+            // We want the lowest value
             if (index * 2 + 1 < list.size()) {
                 if (list.get(index * 2).getMin() < list.get(2 * index + 1).getMin()) {
                     childIndex = index * 2;
@@ -135,21 +148,27 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
                 childIndex = index * 2;
             }
 
+            // If child node's minimum value is higher than it's parent
+            // Everything is in it's right place
             Node childNode = list.get(childIndex);
             if (node.getMin() < childNode.getMin()) {
                 break;
             }
 
+            // Switch child node's minimum element with it's parent
             int temp = childNode.getMin();
             childNode.setMin(node.getMin());
             node.setMin(temp);
 
+            // Check if the values are correctly placed
+            // if not, switch them around
             if (childNode.getMax() != -1 && childNode.getMin() > childNode.getMax()) {
                 temp = childNode.getMin();
                 childNode.setMin(childNode.getMax());
                 childNode.setMax(temp);
             }
 
+            // Then it's time to compare the children of the childnode!
             index = childIndex;
             node = childNode;
         }

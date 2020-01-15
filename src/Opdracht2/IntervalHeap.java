@@ -93,7 +93,7 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
         }
     }
 
-    public int removeLow() {
+    public int removeLow()  {
         int min = getLow();
 
         if (size() == 1) {
@@ -119,7 +119,7 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
 
         while (true) {
 
-            if (index * 2 >= list.size()) {
+            if (index * 2 >= list.size() || list.size() == 1) {
                 break;
             }
 
@@ -187,7 +187,7 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
 
         while (true) {
             //if true node has no child and we're done bubbling
-            if (index * 2 >= list.size()) {
+            if (index * 2 >= list.size() || list.size() == 1) {
                 break;
             }
 
@@ -261,7 +261,7 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
         return list.isEmpty();
     }
 
-    public int getLow() {
+    public int getLow() throws NoSuchElementException {
         if (isEmpty()) {
             throw new NoSuchElementException("List is empty");
         }

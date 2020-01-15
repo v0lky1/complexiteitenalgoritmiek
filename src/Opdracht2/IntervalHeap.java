@@ -262,6 +262,7 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
     }
 
     public int getLow() throws NoSuchElementException {
+        //if list is empty throw exception because there is no number to return
         if (isEmpty()) {
             throw new NoSuchElementException("List is empty");
         }
@@ -269,9 +270,11 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
     }
 
     public int getHigh() {
+        //if list is empty throw exception because there is no number to return
         if (isEmpty()) {
-            throw new NoSuchElementException("List is empty**");
+            throw new NoSuchElementException("List is empty");
         }
+        //if the values size is 1 return the only value, else return the max value of the top node
         if (size() == 1) {
             return list.get(0).getMin();
         } else {

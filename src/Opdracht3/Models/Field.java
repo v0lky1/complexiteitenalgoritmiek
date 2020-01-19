@@ -33,4 +33,9 @@ public class Field {
     public List<Connection> getConnections() {
         return connections;
     }
+
+    @Override
+    public String toString() {
+        return "Field " + id;
+    }
 }

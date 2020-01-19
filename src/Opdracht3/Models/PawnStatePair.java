@@ -9,6 +9,7 @@ public class PawnStatePair {
         this.pawnOnePosition = pawnOnePosition;
         this.pawnTwoPosition = pawnTwoPosition;
     }
+    public PawnStatePair(){}
 
     public Field getPawnOnePosition() {
         return pawnOnePosition;
@@ -16,5 +17,13 @@ public class PawnStatePair {
 
     public Field getPawnTwoPosition() {
         return pawnTwoPosition;
+    }
+
+    public boolean samePositions(PawnStatePair pair) {
+        if (pair.getPawnOnePosition() == pawnOnePosition && pair.getPawnTwoPosition() == pawnTwoPosition) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -18,4 +18,9 @@ public class Connection {
     public GameColor getColor() {
         return color;
     }
+
+    @Override
+    public String toString() {
+        return  "color=" + color;
+    }
 }

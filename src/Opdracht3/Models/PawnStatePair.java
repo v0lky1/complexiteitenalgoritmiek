@@ -9,7 +9,6 @@ public class PawnStatePair {
         this.pawnOnePosition = pawnOnePosition;
         this.pawnTwoPosition = pawnTwoPosition;
     }
-    public PawnStatePair(){}
 
     public Field getPawnOnePosition() {
         return pawnOnePosition;

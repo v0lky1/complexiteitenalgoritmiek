@@ -10,6 +10,8 @@ public class Board {
     public Board() {}
 
     public List<Field> createBoard() {
+        //Made the board according to the image supplied by Saxion. It can be found in the documents folder.
+        //Pardon our naming conventions. We like to have fun here.
         Field field1 = new Field(GameColor.PINK);
         Field field2 = new Field(GameColor.BLACK);
         Field field3 = new Field(GameColor.GREEN);

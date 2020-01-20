@@ -34,7 +34,7 @@ public class Main {
 
         // if one of the fields is on the finish field return it
         if (isFinish(new PawnStatePair(pawn1.getCurrentField(), pawn2.getCurrentField()))) {
-            solution = new LinkedList<PawnStatePair>();
+            solution = new LinkedList<>();
             solution.add(new PawnStatePair(pawn1.getCurrentField(), pawn2.getCurrentField()));
             return solution;
         } else {
@@ -92,14 +92,16 @@ public class Main {
         System.out.println("BACKTRACKING \n" +
                 "Pawn 1: " + pawn1Field + " \n" +
                 "Pawn 2: " + pawn2Field);
-        return new LinkedList<PawnStatePair>();
+        return new LinkedList<>();
     }
 
     private boolean isFinish(PawnStatePair position) {
+        //The color of the finish block is blue. Therefore if the pawn meets this color it won.
         return position.getPawnOnePosition().getColor() == GameColor.BLUE || position.getPawnTwoPosition().getColor() == GameColor.BLUE;
     }
 
     private boolean goalIsReached(LinkedList<PawnStatePair> solution) {
+
         for (PawnStatePair pair : solution) {
             if (pair.getPawnTwoPosition().getColor() == GameColor.BLUE || pair.getPawnOnePosition().getColor() == GameColor.BLUE) {
                 return true;

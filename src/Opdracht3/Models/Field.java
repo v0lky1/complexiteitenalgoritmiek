@@ -22,10 +22,6 @@ public class Field {
         return color;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void addConnection(Connection connection) {
         connections.add(connection);
     }

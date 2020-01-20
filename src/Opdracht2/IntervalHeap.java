@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 public class IntervalHeap implements DoubleEndedPriorityQueue {
 
-    private List<Node> list = new ArrayList<>();
+    protected List<Node> list = new ArrayList<>();
     private int elementsAmount;
 
     public void add(int integerToBeAdded) {

@@ -24,6 +24,13 @@ public class Main {
         }
 
         while (true) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < queue.list.size(); i++) {
+                Node node = queue.list.get(i);
+                sb.append("NODE: ").append(i).append(node);
+            }
+
+            System.out.println(sb.toString());
             System.out.println("Enter your choice: (1=add, 2=removehigh, 3=removelow, 4=currmax, 5=currmin, 6=currsize, 7=isEmpty?, 0=quit)");
 
             int myChoice = 0;

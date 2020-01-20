@@ -1,7 +1,7 @@
 package Opdracht2;
 
 public class Node {
-
+    private static int counter = 0;
     private int min;
     private int max;
 
@@ -24,5 +24,10 @@ public class Node {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    @Override
+    public String toString() {
+        return " [min: "+min + " | max: " +max + "] \n";
     }
 }

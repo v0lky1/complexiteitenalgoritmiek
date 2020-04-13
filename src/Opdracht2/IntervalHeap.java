@@ -151,7 +151,7 @@ public class IntervalHeap implements DoubleEndedPriorityQueue {
             // If child node's minimum value is higher than it's parent
             // Everything is in it's right place
             Node childNode = list.get(childIndex);
-            if (node.getMin() < childNode.getMin()) {
+            if (node.getMin() <= childNode.getMin()) {
                 break;
             }
 

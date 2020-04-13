@@ -27,17 +27,9 @@ public class RecMinMax implements MinMaxer {
         int maxFirstHalf = findMax(firstHalf);
         int maxSecondHalf = findMax(secondHalf);
 
-        if (minFirstHalf >= minSecondHalf) {
-            result.add(minFirstHalf);
-        } else {
-            result.add(minSecondHalf);
-        }
+        result.add(Math.min(minFirstHalf, minSecondHalf));
 
-        if (maxFirstHalf >= maxSecondHalf) {
-            result.add(maxFirstHalf);
-        } else {
-            result.add(maxSecondHalf);
-        }
+        result.add(Math.max(maxFirstHalf, maxSecondHalf));
 
         return result;
     }
@@ -46,8 +38,10 @@ public class RecMinMax implements MinMaxer {
         List<Integer> keep = new ArrayList<>();
 
         int first = list.get(0);
+        int firstNumber = first;
         for (int number : list) {
-            if (number > first) {
+            if (number > firstNumber) {
+                firstNumber = number;
                 keep.add(number);
             }
         }
@@ -65,8 +59,10 @@ public class RecMinMax implements MinMaxer {
         List<Integer> keep = new ArrayList<>();
 
         int first = list.get(0);
+        int firstNumber = first;
         for (int number : list) {
-            if (number < first) {
+            if (number < firstNumber) {
+                firstNumber = number;
                 keep.add(number);
             }
         }

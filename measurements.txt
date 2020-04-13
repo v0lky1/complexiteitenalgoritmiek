@@ -1,0 +1,45 @@
+Array size: 50000000
+Amount of runs: 10
+
+Run number: 1	 	 Time: 538ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 2	 	 Time: 469ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 3	 	 Time: 458ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 4	 	 Time: 454ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 5	 	 Time: 495ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 6	 	 Time: 510ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 7	 	 Time: 510ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 8	 	 Time: 514ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 9	 	 Time: 511ms 
+Min: 45
+Max: 2147483641
+***
+Run number: 10	 	 Time: 509ms 
+Min: 45
+Max: 2147483641
+^^^^^^^^^^^^^^^^^^END^^^^^^^^^^^^^^^^^^
+RecMinMax		 Time: 497ms
+---------------------------------------
